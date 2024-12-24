@@ -9,12 +9,10 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { NavigationContainer } from '@react-navigation/native';
 import { CatalogueScreen } from './src/screens/CatalogueScreen';
 import { CartScreen } from './src/screens/CartScreen';
-import { colors } from './src/utils/colors';
 
 export const App = () => {
   const Stack = createNativeStackNavigator<RootStackParamList>();
   const Tab = createBottomTabNavigator<HomeTabParamList>();
-
   const NavigationStack = () => {
     return (
       <Stack.Navigator screenOptions={{ headerShown: true }}>
@@ -53,7 +51,7 @@ export const App = () => {
               <Ionicons
                 name={focused ? 'home' : 'home-outline'}
                 size={size}
-                color={colors.tertiary}
+                color="black"
                 style={{
                   transform: [{ scale: focused ? 1.2 : 1 }],
                 }}
@@ -70,7 +68,7 @@ export const App = () => {
               <Ionicons
                 name={focused ? 'book' : 'book-outline'}
                 size={size}
-                color={colors.tertiary}
+                color="black"
                 style={{
                   transform: [{ scale: focused ? 1.2 : 1 }],
                 }}
@@ -87,7 +85,7 @@ export const App = () => {
               <Ionicons
                 name={focused ? 'cart' : 'cart-outline'}
                 size={size}
-                color={colors.tertiary}
+                color="black"
                 style={{
                   transform: [{ scale: focused ? 1.2 : 1 }],
                 }}
