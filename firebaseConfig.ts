@@ -6,13 +6,12 @@ import { initializeApp } from 'firebase/app';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: 'AIzaSyDu_tBdZ54I2jPRZwb01I2g4evMi0A3Jpc',
-  authDomain: 'app-vinculacion-46427.firebaseapp.com',
-  projectId: 'app-vinculacion-46427',
-  storageBucket: 'app-vinculacion-46427.firebasestorage.app',
-  messagingSenderId: '49127806923',
-  appId: '1:49127806923:web:76d9ddd992b2e836fd884e',
+  apiKey: process.env.EXPO_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.EXPO_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.EXPO_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.EXPO_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.EXPO_PUBLIC_FIREBASE_APP_ID,
 };
-
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
