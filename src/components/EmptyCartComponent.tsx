@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View } from 'react-native';
 
 export const EmptyCartComponent = () => {
   return <View></View>;
