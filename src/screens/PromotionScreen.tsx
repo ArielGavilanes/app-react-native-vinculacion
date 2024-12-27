@@ -6,20 +6,19 @@ import { PromotionCard } from './PromotionCard';
 const promotions = [
   {
     id: 1,
-    code: "SKINGOFIRST",
-    discount: "5%",
-    validity: "6 de octubre",
+    code: 'SKINGOFIRST',
+    discount: '5%',
+    validity: '6 de octubre',
     minValue: 6.0,
   },
   {
     id: 2,
-    code: "SKINLAB",
-    discount: "10%",
-    validity: "12 de febrero",
+    code: 'SKINLAB',
+    discount: '10%',
+    validity: '12 de febrero',
     minValue: 12.0,
   },
 ];
-
 
 export const PromotionScreen = () => {
   const handleApplyPromotion = (code: string) => {
