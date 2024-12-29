@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ScrollView, ActivityIndicator } from 'react-native';
 import { PromotionCard } from '../components/PromotionCard';
 import { useFirestore } from '../hooks/useFirestore';
@@ -8,17 +8,22 @@ import { colors } from '../utils/colors';
 
 export const PromotionScreen = () => {
   const { data, fetchData, loading } = useFirestore(COLLECTIONS.PROMOTIONS);
+  const [promotions, setPromotions] = useState<PromotionI[] | null>(null);
 
   useEffect(() => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    if (data) {
+      const filteredData = data as PromotionI[];
+      setPromotions(filteredData);
+    }
+  }, [data]);
+
   if (loading) {
     return <ActivityIndicator size="large" color={colors.primary} />;
   }
-
-  // Filtrar y castear los datos específicamente como promociones
-  const promotions = data as PromotionI[] | null;
 
   return (
     <ScrollView style={{ flex: 1, backgroundColor: colors.tertiary, padding: 16 }}>
