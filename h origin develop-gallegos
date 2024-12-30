@@ -1,0 +1,25 @@
+[33m9c2ac33[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mdevelop-gallegos[m[33m)[m Merge branch 'develop' into develop-gallegos
+[33m261c459[m[33m ([m[1;31morigin/develop[m[33m, [m[1;32mdevelop[m[33m)[m cambio en ProductI
+[33m0933142[m[33m ([m[1;31morigin/develop-Paul[m[33m)[m useFirestore hook
+[33mb3194cd[m db
+[33mf23dcd1[m eslint config
+[33m94a977c[m promotions
+[33m6f486f0[m Merge branch 'develop' of https://github.com/ArielGavilanes/app-react-native-vinculacion into develop-ariel
+[33m7bbe4d0[m promotions
+[33m2aa81a1[m components
+[33m0d835ce[m Merge branch 'develop-ariel' of https://github.com/ArielGavilanes/app-react-native-vinculacion into develop
+[33m65e1ec8[m components
+[33mf4729c8[m arreglos
+[33m0df91f8[m cree PromotionScreen y el componente PromotionCard para listar las promociones con datos quemados
+[33mb0ef833[m[33m ([m[1;31morigin/develop-gallegos[m[33m)[m catalogue
+[33m6127fe1[m Merge pull request #3 from ArielGavilanes/develop-ariel
+[33m64f223d[m pull request
+[33mbec9976[m env configuration
+[33mbd936c9[m variables de entorno
+[33m7c21f1a[m colors
+[33md14dcf4[m configuracion de tabs
+[33m5c6f29a[m firebase 1/2 configuration
+[33mde3bcf8[m configurations
+[33m076e1fa[m[33m ([m[1;31morigin/develop-Jofre[m[33m)[m configuracion tailwinds
+[33mff58a21[m first commit
+[33m4b97321[m Initial commit
