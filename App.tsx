@@ -9,11 +9,11 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { NavigationContainer } from '@react-navigation/native';
 import { CatalogueScreen } from './src/screens/CatalogueScreen';
 import { CartScreen } from './src/screens/CartScreen';
+import { PromotionScreen } from './src/screens/PromotionScreen';
 
 export const App = () => {
   const Stack = createNativeStackNavigator<RootStackParamList>();
   const Tab = createBottomTabNavigator<HomeTabParamList>();
-
   const NavigationStack = () => {
     return (
       <Stack.Navigator screenOptions={{ headerShown: true }}>
@@ -68,6 +68,23 @@ export const App = () => {
             tabBarIcon: ({ size, focused }) => (
               <Ionicons
                 name={focused ? 'book' : 'book-outline'}
+                size={size}
+                color="black"
+                style={{
+                  transform: [{ scale: focused ? 1.2 : 1 }],
+                }}
+              />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Promotions"
+          component={PromotionScreen}
+          options={{
+            tabBarLabel: 'Promociones',
+            tabBarIcon: ({ size, focused }) => (
+              <Ionicons
+                name={focused ? 'add' : 'add-outline'}
                 size={size}
                 color="black"
                 style={{
