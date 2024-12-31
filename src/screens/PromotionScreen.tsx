@@ -1,43 +1,40 @@
-import React from 'react';
-import { View, ScrollView } from 'react-native';
-import { PromotionCard } from './PromotionCard';
-
-// Lista de promociones (datos quemados)
-const promotions = [
-  {
-    id: 1,
-    code: 'SKINGOFIRST',
-    discount: '5%',
-    validity: '6 de octubre',
-    minValue: 6.0,
-  },
-  {
-    id: 2,
-    code: 'SKINLAB',
-    discount: '10%',
-    validity: '12 de febrero',
-    minValue: 12.0,
-  },
-];
+import React, { useState, useEffect } from 'react';
+import { ScrollView, ActivityIndicator } from 'react-native';
+import { PromotionCard } from '../components/PromotionCard';
+import { useFirestore } from '../hooks/useFirestore';
+import { COLLECTIONS } from '../enum/collections';
+import { PromotionI } from '../interfaces/PromotionI';
+import { colors } from '../utils/colors';
 
 export const PromotionScreen = () => {
-  const handleApplyPromotion = (code: string) => {
-    console.log(`Promoción aplicada: ${code}`);
-    // Implementar la lógica para aplicar la promoción al carrito
-  };
+  const { data, fetchData, loading } = useFirestore(COLLECTIONS.PROMOTIONS);
+  const [promotions, setPromotions] = useState<PromotionI[] | null>(null);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    if (data) {
+      const filteredData = data as PromotionI[];
+      setPromotions(filteredData);
+    }
+  }, [data]);
+
+  if (loading) {
+    return <ActivityIndicator size="large" color={colors.primary} />;
+  }
 
   return (
-    <ScrollView className="flex-1 bg-gray-100 p-4">
-      {promotions.map((promo) => (
-        <PromotionCard
-          key={promo.id}
-          code={promo.code}
-          discount={promo.discount}
-          validity={promo.validity}
-          minValue={promo.minValue}
-          onApply={() => handleApplyPromotion(promo.code)}
-        />
-      ))}
+    <ScrollView style={{ flex: 1, backgroundColor: colors.tertiary, padding: 16 }}>
+      {promotions &&
+        promotions.map((promotion) => (
+          <PromotionCard
+            key={promotion.id}
+            promotion={promotion}
+            onApply={() => console.log(`Aplicando promoción: ${promotion.name}`)}
+          />
+        ))}
     </ScrollView>
   );
 };
