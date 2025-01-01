@@ -12,6 +12,7 @@ export const PromotionScreen = () => {
 
   useEffect(() => {
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -26,13 +27,17 @@ export const PromotionScreen = () => {
   }
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: colors.tertiary, padding: 16 }}>
+    <ScrollView
+      style={{ flex: 1, backgroundColor: colors.tertiary, padding: 16 }}
+    >
       {promotions &&
         promotions.map((promotion) => (
           <PromotionCard
             key={promotion.id}
             promotion={promotion}
-            onApply={() => console.log(`Aplicando promoción: ${promotion.name}`)}
+            onApply={() =>
+              console.log(`Aplicando promoción: ${promotion.name}`)
+            }
           />
         ))}
     </ScrollView>

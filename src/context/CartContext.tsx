@@ -1,6 +1,7 @@
 import { createContext, ReactNode, useContext, useState } from 'react';
 import { CartContextType } from '../types/CartContextType';
 import { CartItemI } from '../interfaces/CartItemI';
+import { ProductI } from '../interfaces/ProductI';
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
@@ -11,19 +12,19 @@ interface CartProviderProps {
 export const CartProvider = ({ children }: CartProviderProps) => {
   const [cart, setCart] = useState<CartItemI[]>([]);
 
-  const addProduct = (product: CartItemI) => {
+  const addProduct = (product: ProductI) => {
     setCart((prevCart) => {
       const existingProduct = prevCart.find(
-        (item) => item.product.id === product.product.id,
+        (item) => item.product.id === product.id,
       );
       if (existingProduct) {
         return prevCart.map((item) =>
-          item.product.id === product.product.id
+          item.product.id === product.id
             ? { ...item, quantity: item.quantity + 1 }
             : item,
         );
       }
-      return [...prevCart, product];
+      return [...prevCart, { product, quantity: 1 }];
     });
   };
 

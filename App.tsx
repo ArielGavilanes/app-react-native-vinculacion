@@ -10,6 +10,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { CatalogueScreen } from './src/screens/CatalogueScreen';
 import { CartScreen } from './src/screens/CartScreen';
 import { PromotionScreen } from './src/screens/PromotionScreen';
+import { CartProvider } from './src/context/CartContext';
 
 export const App = () => {
   const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -117,11 +118,13 @@ export const App = () => {
 
   return (
     <SafeAreaProvider>
-      <SafeAreaView style={{ flex: 1 }} edges={['top']}>
-        <NavigationContainer>
-          <NavigationStack />
-        </NavigationContainer>
-      </SafeAreaView>
+      <CartProvider>
+        <SafeAreaView style={{ flex: 1 }} edges={['top']}>
+          <NavigationContainer>
+            <NavigationStack />
+          </NavigationContainer>
+        </SafeAreaView>
+      </CartProvider>
     </SafeAreaProvider>
   );
 };

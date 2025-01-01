@@ -10,8 +10,17 @@ interface PromotionCardProps {
 
 export const PromotionCard = ({ promotion, onApply }: PromotionCardProps) => {
   return (
-    <View style={{ backgroundColor: colors.secondary, borderRadius: 8, padding: 16, marginBottom: 16 }}>
-      <Text style={{ fontSize: 18, fontWeight: 'bold', color: colors.tertiary }}>
+    <View
+      style={{
+        backgroundColor: colors.secondary,
+        borderRadius: 8,
+        padding: 16,
+        marginBottom: 16,
+      }}
+    >
+      <Text
+        style={{ fontSize: 18, fontWeight: 'bold', color: colors.tertiary }}
+      >
         {promotion.name}
       </Text>
       <Text style={{ fontSize: 14, color: colors.tertiary }}>
@@ -36,7 +45,13 @@ export const PromotionCard = ({ promotion, onApply }: PromotionCardProps) => {
         }}
         onPress={onApply}
       >
-        <Text style={{ color: colors.tertiary, textAlign: 'center', fontWeight: '600' }}>
+        <Text
+          style={{
+            color: colors.tertiary,
+            textAlign: 'center',
+            fontWeight: '600',
+          }}
+        >
           APLICAR
         </Text>
       </TouchableOpacity>
