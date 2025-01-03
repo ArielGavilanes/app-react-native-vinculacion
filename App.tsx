@@ -11,6 +11,7 @@ import { CatalogueScreen } from './src/screens/CatalogueScreen';
 import { CartScreen } from './src/screens/CartScreen';
 import { PromotionScreen } from './src/screens/PromotionScreen';
 import { CartProvider } from './src/context/CartContext';
+import { SingleProductScreen } from './src/screens/SingleProductScreen';
 
 export const App = () => {
   const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -23,6 +24,7 @@ export const App = () => {
           component={Tabs}
           options={{ headerShown: false }}
         />
+        <Stack.Screen name="SingleProduct" component={SingleProductScreen} />
       </Stack.Navigator>
     );
   };
