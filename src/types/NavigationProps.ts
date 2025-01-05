@@ -1,4 +1,15 @@
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from './RoutingTypes';
 
-export type HomeScreen = NativeStackNavigationProp<RootStackParamList, 'Home'>;
+export type HomeScreenScreenNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  'Home'
+>;
+export type CartScreenScreenNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  'Cart'
+>;
+export type CatalogueScreenScreenNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  'Catalogue'
+>;
