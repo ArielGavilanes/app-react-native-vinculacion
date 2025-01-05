@@ -11,9 +11,6 @@ import { CatalogueScreen } from './src/screens/CatalogueScreen';
 import { CartScreen } from './src/screens/CartScreen';
 import { PromotionScreen } from './src/screens/PromotionScreen';
 
-import { ProductsScreen } from './src/screens/ProductsScreen';
-import { ServicesScreen } from './src/screens/ServicesScreen';
-
 export const App = () => {
   const Stack = createNativeStackNavigator<RootStackParamList>();
   const Tab = createBottomTabNavigator<HomeTabParamList>();
@@ -24,16 +21,6 @@ export const App = () => {
           name="Tabs"
           component={Tabs}
           options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Products"
-          component={ProductsScreen}
-          options={{ title: 'Productos' }}
-        />
-        <Stack.Screen
-          name="Services"
-          component={ServicesScreen}
-          options={{ title: 'Servicios' }}
         />
       </Stack.Navigator>
     );
