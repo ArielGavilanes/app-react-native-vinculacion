@@ -114,6 +114,23 @@ export const App = () => {
             ),
           }}
         />
+        <Tab.Screen
+          name="SingleProduct"
+          component={CartScreen}
+          options={{
+            tabBarLabel: 'Carrito',
+            tabBarIcon: ({ size, focused }) => (
+              <Ionicons
+                name={focused ? 'cart' : 'cart-outline'}
+                size={size}
+                color="black"
+                style={{
+                  transform: [{ scale: focused ? 1.2 : 1 }],
+                }}
+              />
+            ),
+          }}
+        />
       </Tab.Navigator>
     );
   };

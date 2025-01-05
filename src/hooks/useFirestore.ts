@@ -1,8 +1,8 @@
+import { CategoryI } from './../interfaces/CategoryI';
 import { useState } from 'react';
 import { ProductI } from '../interfaces/ProductI';
-import { CategoryI } from '../interfaces/CategoryI';
 import { PromotionI } from '../interfaces/PromotionI';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, query, where } from 'firebase/firestore';
 import { db } from '../utils/db';
 import { COLLECTIONS } from '../enum/collections';
 
@@ -44,6 +44,12 @@ export const useFirestore = (collectionName: string) => {
     } catch (err) {
       console.error('Error fetching data: ', err);
     }
+  };
+
+  const fetchProductByCategory = async (categoryId: string) => {
+    const productsRef = collection(db, COLLECTIONS.PRODUCTS);
+    const q = query(productsRef, where('category_id', '==', categoryId));
+    const querySnapshot = await getDocs(q);
   };
 
   return { data, fetchData, loading };
