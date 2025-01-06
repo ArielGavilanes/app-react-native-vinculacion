@@ -12,12 +12,15 @@ export const PromotionScreen = () => {
 
   useEffect(() => {
     fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     if (data) {
-      const filteredData = data as PromotionI[];
+      const filteredData = (data as PromotionI[]).filter((promotion) => {
+        const now = new Date();
+        const validityDate = promotion.validity.toDate();
+        return now < validityDate;
+      });
       setPromotions(filteredData);
     }
   }, [data]);
@@ -27,19 +30,18 @@ export const PromotionScreen = () => {
   }
 
   return (
-    <ScrollView
-      style={{ flex: 1, backgroundColor: colors.tertiary, padding: 16 }}
-    >
-      {promotions &&
+    <ScrollView style={{ flex: 1, backgroundColor: colors.tertiary, padding: 16 }}>
+      {promotions && promotions.length > 0 ? (
         promotions.map((promotion) => (
           <PromotionCard
             key={promotion.id}
             promotion={promotion}
-            onApply={() =>
-              console.log(`Aplicando promoción: ${promotion.name}`)
-            }
+            onApply={() => console.log(`Aplicando promoción: ${promotion.name}`)}
           />
-        ))}
+        ))
+      ) : (
+        <ActivityIndicator size="small" color={colors.primary} />
+      )}
     </ScrollView>
   );
 };
