@@ -9,7 +9,6 @@ import { CartScreenNavigationProp } from '../types/NavigationProps';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { openExternalUrl } from '../utils/NavigateToUrl';
 import { buildCartMessage } from '../utils/BuildCartMessage';
-
 export const OrderDetailsComponent = () => {
   const {
     appliedDiscountQuantity,
@@ -149,7 +148,7 @@ export const OrderDetailsComponent = () => {
                 totalCart,
               ),
             );
-            navigation.navigate('Tabs', { screen: 'Home' });
+            navigation.navigate('Tabs', { screen: 'Cart' });
             finishOrder();
           }}
         />
