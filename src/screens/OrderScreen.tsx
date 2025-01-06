@@ -1,32 +1,26 @@
 import { View } from 'react-native';
-import { EmptyCartComponent } from '../components/EmptyCartComponent';
+import { ScreenTitleComponent } from '../components/ScreenTitleComponent';
 import { useNavigation } from '@react-navigation/native';
 import { useLayoutEffect } from 'react';
 import { colors } from '../utils/colors';
-import { useCart } from '../context/CartContext';
-import { CartComponent } from '../components/CartComponent';
+import { OrderDetailsComponent } from '../components/OrderDetailsComponent';
 
-export const CartScreen = () => {
+export const OrderScreen = () => {
+  const title: string = 'Resumen de tu pedido';
   const navigation = useNavigation();
-  const { cart } = useCart();
-
   useLayoutEffect(() => {
     navigation.setOptions({
-      title: 'Carrito',
+      title: 'Pedido',
       headerStyle: {
         backgroundColor: colors.primary,
       },
       headerTintColor: '#fff',
     });
   }, [navigation]);
-
   return (
     <View className="flex-1">
-      {cart.length === 0 ? (
-        <EmptyCartComponent />
-      ) : (
-        <CartComponent cart={cart} />
-      )}
+      <ScreenTitleComponent title={title} />
+      <OrderDetailsComponent />
     </View>
   );
 };

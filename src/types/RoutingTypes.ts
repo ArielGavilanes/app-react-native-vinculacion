@@ -8,4 +8,6 @@ export type RootStackParamList = {
   Catalogue: undefined;
   ProductsByCategory: { categoryId: string };
   SingleProduct: { productId: string };
+  Order: undefined;
+  Promotion: undefined;
 };

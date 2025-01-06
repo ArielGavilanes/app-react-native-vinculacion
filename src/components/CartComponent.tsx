@@ -12,16 +12,25 @@ import { useEffect } from 'react';
 import { BottomPriceComponent } from './BottomPriceComponent';
 import { ScreenTitleComponent } from './ScreenTitleComponent';
 import { colors } from '../utils/colors';
+import { useNavigation } from '@react-navigation/native';
+import { CartScreenNavigationProp } from '../types/NavigationProps';
 
 type CartComponentProps = {
   cart: CartItemI[];
 };
 export const CartComponent = ({ cart }: CartComponentProps) => {
-  const { totalCart, calculateTotalCart, clearCart } = useCart();
+  const {
+    subtotal,
+    calculateSubtotal,
+    clearCart,
+    restartOrder,
+    applyTotalCart,
+  } = useCart();
   const bottomMessage: string = 'Realizar pedido';
   const title: string = 'Tu carrito';
+  const navigation = useNavigation<CartScreenNavigationProp>();
   useEffect(() => {
-    calculateTotalCart();
+    calculateSubtotal();
   });
   return (
     <View className="flex-1">
@@ -50,7 +59,15 @@ export const CartComponent = ({ cart }: CartComponentProps) => {
           </Text>
         </TouchableOpacity>
       </ScrollView>
-      <BottomPriceComponent message={bottomMessage} price={totalCart} />
+      <BottomPriceComponent
+        message={bottomMessage}
+        price={subtotal}
+        action={() => {
+          navigation.navigate('Order');
+          restartOrder();
+          applyTotalCart();
+        }}
+      />
     </View>
   );
 };

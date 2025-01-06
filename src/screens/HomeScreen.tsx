@@ -7,35 +7,25 @@ import {
 } from 'react-native';
 import { useLayoutEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { Linking } from 'react-native';
 import { colors } from '../utils/colors';
-
-const BUTTON_TEXT = 'IR A VER';
+import { openExternalUrl } from '../utils/NavigateToUrl';
 
 export const HomeScreen = () => {
-  const navigation = useNavigation();
+  const BUTTON_TEXT = 'IR A VER';
 
+  const navigation = useNavigation();
+  const spaUrl = 'https://skinfortelab.com/';
+  const academyUrl = 'https://www.aula.skinfortelab.com/';
   useLayoutEffect(() => {
     navigation.setOptions({
       title: 'Inicio',
-      headerStyle: { backgroundColor: colors.secondary },
-      headerTintColor: colors.tertiary,
+      headerStyle: {
+        backgroundColor: colors.primary,
+      },
+      headerTintColor: '#fff',
       headerLeft: () => null,
     });
   }, [navigation]);
-
-  const openExternalUrl = async (url: string) => {
-    try {
-      const supported = await Linking.canOpenURL(url);
-      if (supported) {
-        await Linking.openURL(url);
-      } else {
-        console.error('URL no soportada:', url);
-      }
-    } catch (error: unknown) {
-      console.error('Error al abrir la URL:', error);
-    }
-  };
 
   return (
     <ImageBackground
@@ -54,16 +44,16 @@ export const HomeScreen = () => {
               className="w-16 h-16 mb-2"
             />
             <Text className="text-lg font-bold text-center mb-2">
-              PRODUCTOS
+              Nuestro Spa
             </Text>
             <Text className="text-sm text-gray-600 text-center mb-3">
-              Disfruta de los productos que tenemos para ti
+              Disfruta de los tratamientos que tenemos para ti
             </Text>
             <TouchableOpacity
-              className="bg-purple-300 rounded-full py-2 px-3"
-              onPress={() => openExternalUrl('https://expo.dev/')}
+              className="bg-black rounded-full py-2 px-3"
+              onPress={() => openExternalUrl(spaUrl)}
             >
-              <Text className="text-black font-bold text-center">
+              <Text className="text-white font-bold text-center">
                 {BUTTON_TEXT}
               </Text>
             </TouchableOpacity>
@@ -77,16 +67,16 @@ export const HomeScreen = () => {
               className="w-16 h-16 mb-2"
             />
             <Text className="text-lg font-bold text-center mb-2">
-              SERVICIOS
+              Nuestra Academia
             </Text>
             <Text className="text-sm text-gray-600 text-center mb-3">
-              Disfruta de los servicios que tenemos para ti
+              En nuestra academia aprenderas sobre cuidado de la piel
             </Text>
             <TouchableOpacity
-              className="bg-purple-300 rounded-full py-2 px-3"
-              onPress={() => openExternalUrl('https://example.com/academy')}
+              className="bg-black rounded-full py-2 px-3"
+              onPress={() => openExternalUrl(academyUrl)}
             >
-              <Text className="text-black font-bold text-center">
+              <Text className="text-white font-bold text-center">
                 {BUTTON_TEXT}
               </Text>
             </TouchableOpacity>

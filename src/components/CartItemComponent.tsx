@@ -18,7 +18,9 @@ export const CartItemComponent = ({ item }: CartItemComponentProps) => {
       </View>
       <View className="flex-1 ml-2 mr-2 ">
         <Text className="text-xl font-semibold">{item.product.name}</Text>
-        <Text className="text-lg font-normal">${item.totalProduct}</Text>
+        <Text className="text-lg font-normal">
+          ${item.totalProduct.toFixed(2)}
+        </Text>
         <View className="flex-row w-full p-1 mt-4">
           <View className="items-center justify-center">
             <CircularButton

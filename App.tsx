@@ -10,15 +10,17 @@ import { NavigationContainer } from '@react-navigation/native';
 import { CatalogueScreen } from './src/screens/CatalogueScreen';
 import { CartScreen } from './src/screens/CartScreen';
 import { PromotionScreen } from './src/screens/PromotionScreen';
-import { CartProvider } from './src/context/CartContext';
+import { CartProvider, useCart } from './src/context/CartContext';
 import { ProductByCategoryScreen } from './src/screens/ProductByCategoryScreen';
 import { SingleProductScreen } from './src/screens/SingleProductScreen';
+import { OrderScreen } from './src/screens/OrderScreen';
 
 export const App = () => {
   const Stack = createNativeStackNavigator<RootStackParamList>();
   const Tab = createBottomTabNavigator<HomeTabParamList>();
 
   const Tabs = () => {
+    const { cart } = useCart();
     return (
       <Tab.Navigator
         screenOptions={{
@@ -70,23 +72,6 @@ export const App = () => {
           }}
         />
         <Tab.Screen
-          name="Promotions"
-          component={PromotionScreen}
-          options={{
-            tabBarLabel: 'Promociones',
-            tabBarIcon: ({ size, focused }) => (
-              <Ionicons
-                name={focused ? 'add' : 'add-outline'}
-                size={size}
-                color="black"
-                style={{
-                  transform: [{ scale: focused ? 1.2 : 1 }],
-                }}
-              />
-            ),
-          }}
-        />
-        <Tab.Screen
           name="Cart"
           component={CartScreen}
           options={{
@@ -101,6 +86,7 @@ export const App = () => {
                 }}
               />
             ),
+            tabBarBadge: cart.length > 0 ? cart.length : undefined,
           }}
         />
       </Tab.Navigator>
@@ -120,6 +106,8 @@ export const App = () => {
           component={ProductByCategoryScreen}
         />
         <Stack.Screen name="SingleProduct" component={SingleProductScreen} />
+        <Stack.Screen name="Order" component={OrderScreen} />
+        <Stack.Screen name="Promotion" component={PromotionScreen} />
       </Stack.Navigator>
     );
   };

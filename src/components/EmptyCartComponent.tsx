@@ -3,10 +3,10 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { colors } from '../utils/colors';
 import { useNavigation } from '@react-navigation/native';
-import { CartScreenScreenNavigationProp } from '../types/NavigationProps';
+import { CartScreenNavigationProp } from '../types/NavigationProps';
 
 export const EmptyCartComponent = () => {
-  const navigation = useNavigation<CartScreenScreenNavigationProp>();
+  const navigation = useNavigation<CartScreenNavigationProp>();
   const emptyCartMessage: string = 'Tu carrito esta vacio';
   const catalogueButtonMessage: string = 'Mirar catalogo';
   const goToCatalogueScreen = () => navigation.navigate('Catalogue');

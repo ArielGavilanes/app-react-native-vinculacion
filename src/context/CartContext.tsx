@@ -12,6 +12,11 @@ interface CartProviderProps {
 export const CartProvider = ({ children }: CartProviderProps) => {
   const [cart, setCart] = useState<CartItemI[]>([]);
   const [totalCart, setTotalCart] = useState<number>(0);
+  const [subtotal, setSubtotal] = useState<number>(0);
+  const [appliedDiscount, setAppliedDiscount] = useState<boolean>(false);
+  const [shippingCost, setShippingCost] = useState<number>(3.4);
+  const [appliedDiscountQuantity, setAppliedDiscountQuantity] =
+    useState<number>(0);
 
   const addProduct = (product: ProductI) => {
     setCart((prevCart) => {
@@ -24,7 +29,6 @@ export const CartProvider = ({ children }: CartProviderProps) => {
             ? {
                 ...item,
                 quantity: item.quantity + 1,
-                totalProduct: item.product.price * item.quantity,
               }
             : item,
         );
@@ -34,13 +38,13 @@ export const CartProvider = ({ children }: CartProviderProps) => {
         { product, quantity: 1, totalProduct: product.price },
       ];
     });
-    calculateTotalCart();
-    // console.log('totalCart', totalCart);
+    calculateTotalForProduct(product.id);
+    calculateSubtotal();
   };
 
   const removeProduct = (id: string) => {
     setCart((prevCart) => prevCart.filter((item) => item.product.id !== id));
-    calculateTotalCart();
+    calculateSubtotal();
   };
 
   const increaseQuantity = (id: string) => {
@@ -55,7 +59,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
       ),
     );
     calculateTotalForProduct(id);
-    calculateTotalCart();
+    calculateSubtotal();
   };
 
   const decreaseQuantity = (id: string) => {
@@ -72,17 +76,17 @@ export const CartProvider = ({ children }: CartProviderProps) => {
         .filter((item) => item.quantity > 0),
     );
     calculateTotalForProduct(id);
-    calculateTotalCart();
+    calculateSubtotal();
   };
 
   const clearCart = () => {
     setCart([]);
-    calculateTotalCart();
+    calculateSubtotal();
   };
 
-  const calculateTotalCart = () => {
+  const calculateSubtotal = () => {
     const total = cart.reduce((acc, item) => acc + item.totalProduct, 0);
-    setTotalCart(total);
+    setSubtotal(total);
   };
 
   const calculateTotalForProduct = (id: string) => {
@@ -98,6 +102,38 @@ export const CartProvider = ({ children }: CartProviderProps) => {
     );
   };
 
+  const applyDiscount = (discount: number) => {
+    const finishDiscount = (totalCart * discount) / 100;
+    setAppliedDiscountQuantity(finishDiscount);
+    const total = subtotal - finishDiscount;
+    setTotalCart(total);
+    setAppliedDiscount(true);
+  };
+
+  const finishOrder = () => {
+    clearCart();
+    setTotalCart(0);
+    setAppliedDiscount(false);
+    setAppliedDiscountQuantity(0);
+    setSubtotal(0);
+    setShippingCost(0);
+  };
+
+  const restartOrder = () => {
+    setTotalCart(0);
+    setAppliedDiscount(false);
+    setAppliedDiscountQuantity(0);
+    setSubtotal(0);
+    setShippingCost(0);
+  };
+
+  const applyTotalCart = () => {
+    setTotalCart(subtotal);
+  };
+
+  const saveShippingCost = (cost: number) => {
+    setShippingCost(cost);
+  };
   return (
     <CartContext.Provider
       value={{
@@ -107,8 +143,17 @@ export const CartProvider = ({ children }: CartProviderProps) => {
         increaseQuantity,
         decreaseQuantity,
         clearCart,
-        calculateTotalCart,
+        calculateSubtotal,
         totalCart,
+        applyDiscount,
+        appliedDiscount,
+        subtotal,
+        finishOrder,
+        appliedDiscountQuantity,
+        applyTotalCart,
+        shippingCost,
+        saveShippingCost,
+        restartOrder,
       }}
     >
       {children}

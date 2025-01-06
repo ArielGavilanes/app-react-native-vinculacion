@@ -8,7 +8,7 @@ export type HomeScreenScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
   'Home'
 >;
-export type CartScreenScreenNavigationProp = NativeStackNavigationProp<
+export type CartScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
   'Cart'
 >;
@@ -24,10 +24,17 @@ export type SingleProductScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
   'SingleProduct'
 >;
+export type PromotionsScreenNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  'Promotion'
+>;
+
+//Route props
 export type ProductByCategoryRouteProp = RouteProp<
   RootStackParamList,
   'ProductsByCategory'
 >;
+
 export type SingleProductRouteProp = RouteProp<
   RootStackParamList,
   'SingleProduct'
