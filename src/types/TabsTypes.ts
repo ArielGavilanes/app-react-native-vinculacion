@@ -4,4 +4,5 @@ export type HomeTabParamList = {
   Catalogue: undefined;
   Promotions: undefined;
   SingleProduct: undefined;
+  ProductsByCategory: { categoryId: string };
 };

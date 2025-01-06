@@ -11,23 +11,12 @@ import { CatalogueScreen } from './src/screens/CatalogueScreen';
 import { CartScreen } from './src/screens/CartScreen';
 import { PromotionScreen } from './src/screens/PromotionScreen';
 import { CartProvider } from './src/context/CartContext';
+import { ProductByCategoryScreen } from './src/screens/ProductByCategoryScreen';
 import { SingleProductScreen } from './src/screens/SingleProductScreen';
 
 export const App = () => {
   const Stack = createNativeStackNavigator<RootStackParamList>();
   const Tab = createBottomTabNavigator<HomeTabParamList>();
-  const NavigationStack = () => {
-    return (
-      <Stack.Navigator screenOptions={{ headerShown: true }}>
-        <Stack.Screen
-          name="Tabs"
-          component={Tabs}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen name="SingleProduct" component={SingleProductScreen} />
-      </Stack.Navigator>
-    );
-  };
 
   const Tabs = () => {
     return (
@@ -114,24 +103,24 @@ export const App = () => {
             ),
           }}
         />
-        <Tab.Screen
-          name="SingleProduct"
-          component={CartScreen}
-          options={{
-            tabBarLabel: 'Carrito',
-            tabBarIcon: ({ size, focused }) => (
-              <Ionicons
-                name={focused ? 'cart' : 'cart-outline'}
-                size={size}
-                color="black"
-                style={{
-                  transform: [{ scale: focused ? 1.2 : 1 }],
-                }}
-              />
-            ),
-          }}
-        />
       </Tab.Navigator>
+    );
+  };
+
+  const NavigationStack = () => {
+    return (
+      <Stack.Navigator screenOptions={{ headerShown: true }}>
+        <Stack.Screen
+          name="Tabs"
+          component={Tabs}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="ProductsByCategory"
+          component={ProductByCategoryScreen}
+        />
+        <Stack.Screen name="SingleProduct" component={SingleProductScreen} />
+      </Stack.Navigator>
     );
   };
 

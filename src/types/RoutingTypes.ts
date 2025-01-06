@@ -1,7 +1,11 @@
+import { NavigatorScreenParams } from '@react-navigation/native';
+import { HomeTabParamList } from './TabsTypes';
+
 export type RootStackParamList = {
   Home: undefined;
-  Tabs: undefined;
+  Tabs: NavigatorScreenParams<HomeTabParamList>;
   Cart: undefined;
   Catalogue: undefined;
-  SingleProduct: undefined;
+  ProductsByCategory: { categoryId: string };
+  SingleProduct: { productId: string };
 };

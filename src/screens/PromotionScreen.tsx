@@ -23,7 +23,13 @@ export const PromotionScreen = () => {
   }, [data]);
 
   if (loading) {
-    return <ActivityIndicator size="large" color={colors.primary} />;
+    return (
+      <ActivityIndicator
+        size="large"
+        color={colors.primary}
+        className="justify-center items-center mt-2"
+      />
+    );
   }
 
   return (
