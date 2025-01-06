@@ -26,17 +26,27 @@ export const PromotionScreen = () => {
   }, [data]);
 
   if (loading) {
-    return <ActivityIndicator size="large" color={colors.primary} />;
+    return (
+      <ActivityIndicator
+        size="large"
+        color={colors.primary}
+        className="justify-center items-center mt-2"
+      />
+    );
   }
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: colors.tertiary, padding: 16 }}>
+    <ScrollView
+      style={{ flex: 1, backgroundColor: colors.tertiary, padding: 16 }}
+    >
       {promotions && promotions.length > 0 ? (
         promotions.map((promotion) => (
           <PromotionCard
             key={promotion.id}
             promotion={promotion}
-            onApply={() => console.log(`Aplicando promoción: ${promotion.name}`)}
+            onApply={() =>
+              console.log(`Aplicando promoción: ${promotion.name}`)
+            }
           />
         ))
       ) : (

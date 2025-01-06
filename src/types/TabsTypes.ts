@@ -3,4 +3,6 @@ export type HomeTabParamList = {
   Cart: undefined;
   Catalogue: undefined;
   Promotions: undefined;
+  SingleProduct: undefined;
+  ProductsByCategory: { categoryId: string };
 };

@@ -1,14 +1,17 @@
+import { CategoryI } from './../interfaces/CategoryI';
 import { useState } from 'react';
 import { ProductI } from '../interfaces/ProductI';
-import { CategoryI } from '../interfaces/CategoryI';
 import { PromotionI } from '../interfaces/PromotionI';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
 import { db } from '../utils/db';
 import { COLLECTIONS } from '../enum/collections';
 
 export const useFirestore = (collectionName: string) => {
   const [data, setData] = useState<
     ProductI[] | CategoryI[] | PromotionI[] | null
+  >(null);
+  const [specificData, setSpecificData] = useState<
+    ProductI | CategoryI | PromotionI | null
   >(null);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -46,5 +49,33 @@ export const useFirestore = (collectionName: string) => {
     }
   };
 
-  return { data, fetchData, loading };
+  const fetchDataById = async (id: string) => {
+    try {
+      setLoading(true);
+      const docRef = doc(db, collectionName, id);
+      const docSnapshot = await getDoc(docRef);
+
+      if (docSnapshot.exists()) {
+        const itemData = { id: docSnapshot.id, ...docSnapshot.data() };
+
+        if (collectionName == COLLECTIONS.PRODUCTS) {
+          setSpecificData(itemData as ProductI);
+        } else if (collectionName == COLLECTIONS.CATEGORIES) {
+          setSpecificData(itemData as CategoryI);
+        } else if (collectionName == COLLECTIONS.PROMOTIONS) {
+          setSpecificData(itemData as PromotionI);
+        }
+      } else {
+        console.error('Document not found');
+        setData(null);
+      }
+
+      setLoading(false);
+    } catch (err) {
+      console.error('Error fetching document by ID: ', err);
+      setLoading(false);
+    }
+  };
+
+  return { data, fetchData, loading, fetchDataById, specificData };
 };
