@@ -7,8 +7,12 @@ import { colors } from '../utils/colors';
 import { useNavigation } from '@react-navigation/native';
 import { CartScreenNavigationProp } from '../types/NavigationProps';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { openExternalUrl } from '../utils/NavigateToUrl';
 import { buildCartMessage } from '../utils/BuildCartMessage';
+import * as WebBrowser from 'expo-web-browser';
+import { useFirestore } from '../hooks/useFirestore';
+import { COLLECTIONS } from '../enum/collections';
+import { ContactI } from '../interfaces/ContactI';
+
 export const OrderDetailsComponent = () => {
   const {
     appliedDiscountQuantity,
@@ -27,12 +31,17 @@ export const OrderDetailsComponent = () => {
   const shippingLocation = 'Envio dentro de Quito';
   const message: string = 'Realizar pedido';
   const navigation = useNavigation<CartScreenNavigationProp>();
-
-  const [isChecked, setIsChecked] = useState(true);
+  const { fetchDataById, specificData } = useFirestore(COLLECTIONS.CONTACT);
+  const [isChecked, setIsChecked] = useState<boolean>(true);
+  const [contact, setContact] = useState<ContactI | null>(null);
   const [orderTotalCart, setOrderTotalCart] = useState<number>(totalCart);
-  const whatsappMessage = (phone: string, message: string) => {
+
+  const whatsappMessage = async (
+    phone: string | undefined,
+    message: string,
+  ) => {
     const url = `https://wa.me/${phone}/?text=${encodeURIComponent(message)}`;
-    openExternalUrl(url);
+    await WebBrowser.openBrowserAsync(url);
   };
 
   const handleCheckboxChange = () => {
@@ -46,6 +55,16 @@ export const OrderDetailsComponent = () => {
     setOrderTotalCart(totalCart + shippingCost);
     saveShippingCost(isChecked ? 3.4 : 4.2);
   }, [isChecked, saveShippingCost, shippingCost, totalCart]);
+
+  useEffect(() => {
+    fetchDataById('QPQyapJyciFM7fgK58kQ');
+  }, [fetchDataById]);
+
+  useEffect(() => {
+    if (specificData) {
+      setContact(specificData as ContactI);
+    }
+  }, [specificData]);
 
   return (
     <View className="flex-1">
@@ -139,13 +158,13 @@ export const OrderDetailsComponent = () => {
           price={orderTotalCart}
           action={() => {
             whatsappMessage(
-              '0987636137',
+              contact?.phone_number,
               buildCartMessage(
                 cart,
                 appliedDiscountQuantity,
                 shippingCost,
                 subtotal,
-                totalCart,
+                orderTotalCart,
               ),
             );
             navigation.navigate('Tabs', { screen: 'Cart' });

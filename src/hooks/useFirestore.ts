@@ -5,13 +5,14 @@ import { PromotionI } from '../interfaces/PromotionI';
 import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
 import { db } from '../utils/db';
 import { COLLECTIONS } from '../enum/collections';
+import { ContactI } from '../interfaces/ContactI';
 
 export const useFirestore = (collectionName: string) => {
   const [data, setData] = useState<
     ProductI[] | CategoryI[] | PromotionI[] | null
   >(null);
   const [specificData, setSpecificData] = useState<
-    ProductI | CategoryI | PromotionI | null
+    ProductI | CategoryI | PromotionI | ContactI | null
   >(null);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -64,6 +65,8 @@ export const useFirestore = (collectionName: string) => {
           setSpecificData(itemData as CategoryI);
         } else if (collectionName == COLLECTIONS.PROMOTIONS) {
           setSpecificData(itemData as PromotionI);
+        } else if (collectionName == COLLECTIONS.CONTACT) {
+          setSpecificData(itemData as ContactI);
         }
       } else {
         console.error('Document not found');

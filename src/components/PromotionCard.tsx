@@ -12,27 +12,27 @@ export const PromotionCard = ({ promotion, onApply }: PromotionCardProps) => {
   return (
     <View
       style={{
-        backgroundColor: colors.secondary,
+        backgroundColor: colors.tertiary,
         borderRadius: 8,
         padding: 16,
         marginBottom: 16,
       }}
     >
       <Text
-        style={{ fontSize: 18, fontWeight: 'bold', color: colors.tertiary }}
+        style={{ fontSize: 18, fontWeight: 'bold', color: colors.secondary }}
       >
         {promotion.name}
       </Text>
-      <Text style={{ fontSize: 14, color: colors.tertiary }}>
+      <Text style={{ fontSize: 14, color: colors.secondary }}>
         {promotion.description}
       </Text>
-      <Text style={{ fontSize: 14, color: colors.tertiary }}>
+      <Text style={{ fontSize: 14, color: colors.secondary }}>
         Descuento: {promotion.discount}%
       </Text>
-      <Text style={{ fontSize: 14, color: colors.tertiary }}>
+      <Text style={{ fontSize: 14, color: colors.secondary }}>
         Compra mínima: ${promotion.minimum_purchase.toFixed(2)}
       </Text>
-      <Text style={{ fontSize: 14, color: colors.tertiary }}>
+      <Text style={{ fontSize: 14, color: colors.secondary }}>
         Validez: {promotion.validity.toDate().toLocaleDateString()}
       </Text>
       <TouchableOpacity
@@ -47,7 +47,7 @@ export const PromotionCard = ({ promotion, onApply }: PromotionCardProps) => {
       >
         <Text
           style={{
-            color: colors.tertiary,
+            color: colors.secondary,
             textAlign: 'center',
             fontWeight: '600',
           }}

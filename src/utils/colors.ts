@@ -1,6 +1,6 @@
 export const colors = {
-  primary: '#1E1E1E', //GRIS
+  primary: '#099ABF', //GRIS
   secondary: '#000000', //BLANCO
-  tertiary: '#FFFFFF', //NEGRO
-  quaterary: '#5A5A5A', //GRIS CLARO
+  tertiary: '#0967bf', //NEGRO
+  quaterary: '#66b1c4', //GRIS CLARO
 };

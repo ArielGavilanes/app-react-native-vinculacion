@@ -40,7 +40,7 @@ export const HomeScreen = () => {
           <View className="bg-white rounded-lg p-3 items-center w-2/5 shadow-lg">
             <Image
               // eslint-disable-next-line @typescript-eslint/no-require-imports
-              source={require('../../assets/productos.png')}
+              source={require('../../assets/nuestro-spa.png')}
               className="w-16 h-16 mb-2"
             />
             <Text className="text-lg font-bold text-center mb-2">
@@ -50,8 +50,9 @@ export const HomeScreen = () => {
               Disfruta de los tratamientos que tenemos para ti
             </Text>
             <TouchableOpacity
-              className="bg-black rounded-full py-2 px-3"
+              className="rounded-lg py-2 px-3"
               onPress={() => openExternalUrl(spaUrl)}
+              style={{ backgroundColor: colors.primary }}
             >
               <Text className="text-white font-bold text-center">
                 {BUTTON_TEXT}
@@ -63,7 +64,7 @@ export const HomeScreen = () => {
           <View className="bg-white rounded-lg p-3 items-center w-2/5 shadow-lg">
             <Image
               // eslint-disable-next-line @typescript-eslint/no-require-imports
-              source={require('../../assets/servicios.png')}
+              source={require('../../assets/nuestra-academia.png')}
               className="w-16 h-16 mb-2"
             />
             <Text className="text-lg font-bold text-center mb-2">
@@ -73,8 +74,9 @@ export const HomeScreen = () => {
               En nuestra academia aprenderas sobre cuidado de la piel
             </Text>
             <TouchableOpacity
-              className="bg-black rounded-full py-2 px-3"
+              className="rounded-lg py-2 px-3"
               onPress={() => openExternalUrl(academyUrl)}
+              style={{ backgroundColor: colors.primary }}
             >
               <Text className="text-white font-bold text-center">
                 {BUTTON_TEXT}
