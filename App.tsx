@@ -14,6 +14,7 @@ import { CartProvider, useCart } from './src/context/CartContext';
 import { ProductByCategoryScreen } from './src/screens/ProductByCategoryScreen';
 import { SingleProductScreen } from './src/screens/SingleProductScreen';
 import { OrderScreen } from './src/screens/OrderScreen';
+import { colors } from './src/utils/colors';
 
 export const App = () => {
   const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -46,7 +47,7 @@ export const App = () => {
               <Ionicons
                 name={focused ? 'home' : 'home-outline'}
                 size={size}
-                color="black"
+                color={colors.primary}
                 style={{
                   transform: [{ scale: focused ? 1.2 : 1 }],
                 }}
@@ -63,7 +64,7 @@ export const App = () => {
               <Ionicons
                 name={focused ? 'book' : 'book-outline'}
                 size={size}
-                color="black"
+                color={colors.primary}
                 style={{
                   transform: [{ scale: focused ? 1.2 : 1 }],
                 }}
@@ -80,7 +81,7 @@ export const App = () => {
               <Ionicons
                 name={focused ? 'cart' : 'cart-outline'}
                 size={size}
-                color="black"
+                color={colors.primary}
                 style={{
                   transform: [{ scale: focused ? 1.2 : 1 }],
                 }}

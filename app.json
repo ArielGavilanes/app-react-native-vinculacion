@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "SKIN FORTE",
-    "slug": "SKIN FORTE",
+    "slug": "SKIN_FORTE",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -27,9 +27,6 @@
       "bundler": "metro"
     },
     "extra": {
-      "eas": {
-        "projectId": "7df84935-5348-4115-9a4f-091ff1c514f4"
-      },
       "firebaseConfig": {
         "apiKey": "${EXPO_PUBLIC_FIREBASE_API_KEY}",
         "authDomain": "${EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN}",
@@ -37,6 +34,9 @@
         "storageBucket": "${EXPO_PUBLIC_FIREBASE_STORAGE_BUCKET}",
         "messagingSenderId": "${EXPO_PUBLIC_FIREBASE_MESSAGING_SENDER_ID}",
         "appId": "${EXPO_PUBLIC_FIREBASE_APP_ID}"
+      },
+      "eas": {
+        "projectId": "20df8519-a33d-4194-a021-3c68273593b4"
       }
     }
   }

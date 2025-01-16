@@ -54,9 +54,7 @@ export const PromotionScreen = () => {
   return (
     <View className="flex-1">
       <ScreenTitleComponent title={title} />
-      <ScrollView
-        style={{ flex: 1, backgroundColor: colors.tertiary, padding: 16 }}
-      >
+      <ScrollView style={{ flex: 1, padding: 16 }}>
         {promotions && promotions.length > 0 ? (
           promotions.map((promotion) => (
             <PromotionCard
