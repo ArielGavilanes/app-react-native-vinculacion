@@ -28,6 +28,9 @@ export const SpecificProductComponent = ({
       <View className="p-4">
         <Text className="text-4xl font-bold">{product?.name}</Text>
       </View>
+      <View className="p-4 flex-1">
+        <Text className="text-lg">{product?.description}</Text>
+      </View>
       <View className="items-end justify-end flex-1">
         <BottomPriceComponent
           message={message}
